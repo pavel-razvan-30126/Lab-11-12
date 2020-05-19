@@ -8,7 +8,6 @@ import java.util.Objects;
 public class Shop {
     private String name;
     private String city;
-    //
 
     public Shop(String name, String city) {
         this.name = name;
@@ -18,10 +17,6 @@ public class Shop {
     public Shop(String name) {
         this.city = "";
         this.name = name;
-    }
-
-    public void caca(){
-        System.out.println("muasdasdasds");
     }
 
     public String getName() {
