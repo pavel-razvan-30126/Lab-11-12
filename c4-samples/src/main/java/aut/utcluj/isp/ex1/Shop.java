@@ -14,6 +14,7 @@ public class Shop {
         this.city = city;
     }
 
+
     public Shop(String name) {
         this.city = "";
         this.name = name;
