@@ -8,6 +8,7 @@ import java.util.Objects;
 public class Shop {
     private String name;
     private String city;
+    //
 
     public Shop(String name, String city) {
         this.name = name;
