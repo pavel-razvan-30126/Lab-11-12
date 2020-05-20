@@ -40,7 +40,7 @@ public class StockController {
      * @return dictionary where the key is the product id and the value is an array of products with the same id
      */
     public Map<String, List<Product>> getCatalogue() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return catalogue;
     }
 
     /**

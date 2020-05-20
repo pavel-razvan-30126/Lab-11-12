@@ -1,12 +1,15 @@
 package aut.utcluj.isp.ex4;
 
+import java.util.ArrayList;
+
 import java.util.List;
+
 
 /**
  * @author stefan
  */
 public class UserCart {
-    private List<Product> cardProducts;
+    private List<Product> cardProducts = new ArrayList<>();
     private double totalPrice;
 
     public double getTotalPrice() {
@@ -17,6 +20,9 @@ public class UserCart {
         return cardProducts;
     }
 
+    /*public UserCart() {
+    }*/
+
     /**
      * Add new product to user cart
      *
@@ -24,7 +30,11 @@ public class UserCart {
      * @param quantity - number of products of the same type to be added
      */
     public void addProductToCart(final Product product, int quantity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        for (int i = 0; i < quantity; i++) {
+            cardProducts.add(product);
+            totalPrice = totalPrice + product.getPrice();
+        }
+      // totalPrice = totalPrice + product.getPrice() * quantity;
     }
 
     /**
@@ -33,8 +43,18 @@ public class UserCart {
      *
      * @param productId - unique product id
      */
-    public void removeProductFromCart(final String productId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void removeProductFromCart(final String productId) throws ProductNotFoundException {
+        int index = 0;
+
+        for (Product product : cardProducts) {
+            if (product.getProductId().equals(productId)) {
+                index = cardProducts.indexOf(product);
+                cardProducts.remove(index);
+            }
+        }
+        if(index == 0){
+            throw new ProductNotFoundException();
+        }
     }
 
     /**
@@ -42,6 +62,6 @@ public class UserCart {
      * Reset products and total price to default values
      */
     public void resetCart() {
-        throw new UnsupportedOperationException("Not supported yet.");
+
     }
 }

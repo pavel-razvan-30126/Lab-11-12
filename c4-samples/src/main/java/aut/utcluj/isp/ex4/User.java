@@ -1,5 +1,8 @@
 package aut.utcluj.isp.ex4;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author stefan
  */
@@ -19,6 +22,14 @@ public class User {
         return userMoney;
     }
 
+    public void setUserCart(UserCart userCart) {
+        this.userCart = userCart;
+    }
+
+    public void setUserMoney(Double userMoney) {
+        this.userMoney = userMoney;
+    }
+
     /**
      * Add product to the cart
      *
@@ -26,7 +37,7 @@ public class User {
      * @param quantity - quantity to be added
      */
     public void addProductToCart(Product product, int quantity) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       // userCart.addProductToCart();
     }
 
     /**
