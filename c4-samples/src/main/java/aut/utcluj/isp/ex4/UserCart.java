@@ -60,6 +60,7 @@ public class UserCart {
                 cardProducts.remove(product);
                 totalPrice -=product.getPrice();
                 found = true;
+                break;
             }
         }
         if (!found) {

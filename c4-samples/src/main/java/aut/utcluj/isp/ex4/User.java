@@ -49,25 +49,26 @@ public class User {
      * @param productId - unique product id
      */
     public void removeProductFromCart(final String productId) {
-        try {
-            tryRemovingProduct(productId);
-        } catch (ProductNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        userCart.removeProductFromCart(productId);
     }
 
-    public void tryRemovingProduct(final String productID) throws ProductNotFoundException {
-        boolean found = false;
-        for (Product product : userCart.getCardProducts()) {
-            if (product.getProductId().equals(productID)) {
-                userCart.removeProductFromCart(productID);
-                found = true;
-            }
-            if (!found) {
-                throw new ProductNotFoundException();
-            }
-        }
-    }
+
+//   public void tryRemovingProduct(final String productID) throws ProductNotFoundException {
+//       /* boolean found = false;
+//        for (Product product : userCart.getCardProducts()) {
+//            if (product.getProductId().equals(productID)) {
+//                userCart.removeProductFromCart(productID);
+//                found = true;
+//            }
+//        }
+//        if (!found) {
+//            throw new ProductNotFoundException();
+//        }*/
+//       {
+//           userCart.removeProductFromCart(productID);
+//       }
+//    }
 
 
     /**
