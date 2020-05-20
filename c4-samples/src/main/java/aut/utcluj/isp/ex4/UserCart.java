@@ -20,8 +20,10 @@ public class UserCart {
         return cardProducts;
     }
 
-    /*public UserCart() {
-    }*/
+    public UserCart() {
+        this.cardProducts = new ArrayList<>();
+        this.totalPrice = 0;
+    }
 
     /**
      * Add new product to user cart
@@ -34,7 +36,7 @@ public class UserCart {
             cardProducts.add(product);
             totalPrice = totalPrice + product.getPrice();
         }
-      // totalPrice = totalPrice + product.getPrice() * quantity;
+        // totalPrice = totalPrice + product.getPrice() * quantity;
     }
 
     /**
@@ -43,25 +45,43 @@ public class UserCart {
      *
      * @param productId - unique product id
      */
-    public void removeProductFromCart(final String productId) throws ProductNotFoundException {
-        int index = 0;
+    public void removeProductFromCart(final String productId) {
+        try {
+            tryRemovingProduct(productId);
+        } catch (ProductNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void tryRemovingProduct(final String productID) throws ProductNotFoundException {
+        boolean found = false;
         for (Product product : cardProducts) {
-            if (product.getProductId().equals(productId)) {
-                index = cardProducts.indexOf(product);
-                cardProducts.remove(index);
+            if (product.getProductId().equals(productID)) {
+                cardProducts.remove(product);
+                totalPrice -=product.getPrice();
+                found = true;
             }
         }
-        if(index == 0){
+        if (!found) {
             throw new ProductNotFoundException();
         }
     }
+
 
     /**
      * Reset user cart
      * Reset products and total price to default values
      */
     public void resetCart() {
+        this.totalPrice = 0;
+        this.cardProducts = new ArrayList<>();
+    }
 
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setCardProducts(List<Product> cardProducts) {
+        this.cardProducts = cardProducts;
     }
 }

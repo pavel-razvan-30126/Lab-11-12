@@ -1,5 +1,6 @@
 package aut.utcluj.isp.ex4;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class User {
 
     public User(Double userMoney) {
         this.userMoney = userMoney;
+        userCart = new UserCart();
     }
 
     public UserCart getUserCart() {
@@ -37,7 +39,7 @@ public class User {
      * @param quantity - quantity to be added
      */
     public void addProductToCart(Product product, int quantity) {
-       // userCart.addProductToCart();
+        userCart.addProductToCart(product, quantity);
     }
 
     /**
@@ -47,8 +49,26 @@ public class User {
      * @param productId - unique product id
      */
     public void removeProductFromCart(final String productId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            tryRemovingProduct(productId);
+        } catch (ProductNotFoundException e) {
+            e.printStackTrace();
+        }
     }
+
+    public void tryRemovingProduct(final String productID) throws ProductNotFoundException {
+        boolean found = false;
+        for (Product product : userCart.getCardProducts()) {
+            if (product.getProductId().equals(productID)) {
+                userCart.removeProductFromCart(productID);
+                found = true;
+            }
+            if (!found) {
+                throw new ProductNotFoundException();
+            }
+        }
+    }
+
 
     /**
      * Submit cart details
@@ -57,6 +77,20 @@ public class User {
      * If userMoney is greater or equal to the total price of the products, total price should be extracted from total money and cart to be reset to default values
      */
     public void submitCart() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            removeMoney();
+        } catch (NotEnoughMoneyException e) {
+            System.out.println("Not enough money");
+        }
+    }
+
+    public void removeMoney() throws NotEnoughMoneyException {
+        if (userMoney < userCart.getTotalPrice()) {
+            throw new NotEnoughMoneyException();
+        } else {
+            userMoney -= userCart.getTotalPrice();
+            userCart.resetCart();
+        }
     }
 }
+

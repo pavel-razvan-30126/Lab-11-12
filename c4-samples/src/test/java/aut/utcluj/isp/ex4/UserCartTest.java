@@ -28,7 +28,7 @@ public class UserCartTest {
     }
 
     @Test
-    public void testRemoveProductFromCart() throws ProductNotFoundException{
+    public void testRemoveProductFromCart() {
         final Product firstProduct = new Product("p_1", 100d);
         final Product secondProduct = new Product("p_2", 200d);
         final UserCart userCart = new UserCart();
