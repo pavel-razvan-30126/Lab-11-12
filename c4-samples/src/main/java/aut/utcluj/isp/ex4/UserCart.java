@@ -1,16 +1,20 @@
 package aut.utcluj.isp.ex4;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
  * @author stefan
  */
-public class UserCart {
+public class UserCart implements ICartDetails {
     private List<Product> cardProducts = new ArrayList<>();
     private double totalPrice;
+    private HashMap<Product, Integer> produse = new HashMap<>();
 
     public double getTotalPrice() {
         return totalPrice;
@@ -36,6 +40,7 @@ public class UserCart {
             cardProducts.add(product);
             totalPrice = totalPrice + product.getPrice();
         }
+        produse.put(product, quantity);
         // totalPrice = totalPrice + product.getPrice() * quantity;
     }
 
@@ -58,12 +63,12 @@ public class UserCart {
         for (Product product : cardProducts) {
             if (product.getProductId().equals(productID)) {
                 cardProducts.remove(product);
-                totalPrice -=product.getPrice();
+                totalPrice -= product.getPrice();
                 found = true;
                 break;
             }
         }
-        if (!found) {
+        if (found == false) {
             throw new ProductNotFoundException();
         }
     }
@@ -85,4 +90,17 @@ public class UserCart {
     public void setCardProducts(List<Product> cardProducts) {
         this.cardProducts = cardProducts;
     }
+
+    @Override
+    public String getCartDetails() {
+        String mesaj= "";
+        for (Map.Entry<Product, Integer> entry : produse.entrySet()) {
+            mesaj = mesaj +  ("Product id: " + entry.getKey().getProductId() + ", Items: " + entry.getValue()+'\n');
+        }
+
+        return mesaj+"Total price: "+totalPrice;
+    }
 }
+
+
+

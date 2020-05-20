@@ -50,8 +50,8 @@ public class User {
      */
     public void removeProductFromCart(final String productId) {
 
-        userCart.removeProductFromCart(productId);
-    }
+            userCart.removeProductFromCart(productId);
+        }
 
 
 //   public void tryRemovingProduct(final String productID) throws ProductNotFoundException {
