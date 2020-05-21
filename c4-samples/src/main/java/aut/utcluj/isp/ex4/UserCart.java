@@ -50,12 +50,10 @@ public class UserCart implements ICartDetails {
      *
      * @param productId - unique product id
      */
-    public void removeProductFromCart(final String productId) {
-        try {
-            tryRemovingProduct(productId);
-        } catch (ProductNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void removeProductFromCart(final String productId) throws ProductNotFoundException {
+
+        tryRemovingProduct(productId);
+
     }
 
     public void tryRemovingProduct(final String productID) throws ProductNotFoundException {
@@ -93,12 +91,12 @@ public class UserCart implements ICartDetails {
 
     @Override
     public String getCartDetails() {
-        String mesaj= "";
+        String mesaj = "";
         for (Map.Entry<Product, Integer> entry : produse.entrySet()) {
-            mesaj = mesaj +  ("Product id: " + entry.getKey().getProductId() + ", Items: " + entry.getValue()+'\n');
+            mesaj = mesaj + ("Product id: " + entry.getKey().getProductId() + ", Items: " + entry.getValue() + '\n');
         }
 
-        return mesaj+"Total price: "+totalPrice;
+        return mesaj + "Total price: " + totalPrice;
     }
 }
 

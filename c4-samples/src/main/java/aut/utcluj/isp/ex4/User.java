@@ -48,7 +48,7 @@ public class User {
      *
      * @param productId - unique product id
      */
-    public void removeProductFromCart(final String productId) {
+    public void removeProductFromCart(final String productId) throws ProductNotFoundException {
 
             userCart.removeProductFromCart(productId);
         }
@@ -77,12 +77,9 @@ public class User {
      * If userMoney is less than total price of the products, an {@link NotEnoughMoneyException} exception will be thrown
      * If userMoney is greater or equal to the total price of the products, total price should be extracted from total money and cart to be reset to default values
      */
-    public void submitCart() {
-        try {
+    public void submitCart() throws NotEnoughMoneyException {
+
             removeMoney();
-        } catch (NotEnoughMoneyException e) {
-            System.out.println("Not enough money");
-        }
     }
 
     public void removeMoney() throws NotEnoughMoneyException {
