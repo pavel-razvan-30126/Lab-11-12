@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 
 public class UserInterface extends JFrame implements ActionListener {
+
     StockController stockController = new StockController();
     private JButton but1;
     private JButton but2;

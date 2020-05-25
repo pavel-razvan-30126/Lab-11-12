@@ -1,0 +1,152 @@
+Index: c4-samples/src/test/java/aut/utcluj/isp/ex4/UserCartTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package aut.utcluj.isp.ex4;\r\n\r\nimport org.junit.Test;\r\n\r\nimport java.util.List;\r\n\r\nimport static org.junit.Assert.*;\r\n\r\n/**\r\n * @author stefan\r\n */\r\npublic class UserCartTest {\r\n    @Test\r\n    public void testCreate() {\r\n        final UserCart userCart = new UserCart();\r\n        assertNotNull(\"Cart details should not be null\", userCart.getCardProducts());\r\n        assertEquals(\"Default total price should be 0\", 0, userCart.getTotalPrice(), 0);\r\n    }\r\n\r\n    @Test\r\n    public void testAddProductToCart() {\r\n        final Product product = new Product(\"p_1\", 100d);\r\n        final UserCart userCart = new UserCart();\r\n        userCart.addProductToCart(product, 2);\r\n\r\n        assertEquals(\"Cart size should be 2\", 2, userCart.getCardProducts().size());\r\n        assertEquals(\"Total price should be 200\", 200d, userCart.getTotalPrice(), 0);\r\n    }\r\n\r\n    @Test\r\n    public void testRemoveProductFromCart() throws ProductNotFoundException{\r\n        final Product firstProduct = new Product(\"p_1\", 100d);\r\n        final Product secondProduct = new Product(\"p_2\", 200d);\r\n        final UserCart userCart = new UserCart();\r\n        userCart.addProductToCart(firstProduct, 2);\r\n        userCart.addProductToCart(secondProduct, 2);\r\n\r\n        final List<Product> productsBeforeRemove = userCart.getCardProducts();\r\n        assertEquals(\"Cart size should be 4\", 4, productsBeforeRemove.size());\r\n        userCart.removeProductFromCart(\"p_2\");\r\n        final List<Product> productsAfterRemove = userCart.getCardProducts();\r\n        assertEquals(\"Cart size should be 3\", 3, productsAfterRemove.size());\r\n        assertEquals(\"First product should have p_1 id\", \"p_1\", productsAfterRemove.get(0).getProductId());\r\n        assertEquals(\"Second product should have p_1 id\", \"p_1\", productsAfterRemove.get(1).getProductId());\r\n        assertEquals(\"Third product should have p_2 id\", \"p_2\", productsAfterRemove.get(2).getProductId());\r\n        assertEquals(\"Total price should be 400\", 400d, userCart.getTotalPrice(), 0);\r\n    }\r\n\r\n    @Test(expected = ProductNotFoundException.class)\r\n    public void testRemoveProductFromCartThrowsExceptionWhenNoProductFound() throws ProductNotFoundException{\r\n        final UserCart userCart = new UserCart();\r\n        userCart.removeProductFromCart(\"p_1\");\r\n    }\r\n\r\n    @Test\r\n    public void testGetCartDetails() {\r\n        final Product firstProduct = new Product(\"p_1\", 100d);\r\n        final Product secondProduct = new Product(\"p_2\", 200d);\r\n        final UserCart userCart = new UserCart();\r\n        userCart.addProductToCart(firstProduct, 2);\r\n        userCart.addProductToCart(secondProduct, 1);\r\n\r\n        try {\r\n            final String expectedResult = \"Product id: p_1, Items: 2\\n\" +\r\n                    \"Product id: p_2, Items: 1\\n\" +\r\n                    \"Total price: 400.0\";\r\n            final String cartDetails = ((ICartDetails)userCart).getCartDetails();\r\n            assertNotNull(\"Cart details should not be null\", cartDetails);\r\n            assertEquals(\"Cart details should be the same\", expectedResult, cartDetails);\r\n        } catch (ClassCastException ex) {\r\n            fail(\"Show not fail on casting UserCart instance to ICartDetails\");\r\n        }\r\n    }\r\n\r\n    @Test\r\n    public void testResetCart() {\r\n        final Product product = new Product(\"p_1\", 100d);\r\n        final UserCart userCart = new UserCart();\r\n        userCart.addProductToCart(product, 2);\r\n\r\n        final List<Product> productsBeforeReset = userCart.getCardProducts();\r\n        assertEquals(\"2 products in cart\", 2, productsBeforeReset.size());\r\n        assertEquals(\"Total price is 200\", 200d, userCart.getTotalPrice(), 0);\r\n\r\n        userCart.resetCart();\r\n\r\n        final List<Product> productsAfterReset = userCart.getCardProducts();\r\n        assertEquals(\"0 products in cart\", 0, productsAfterReset.size());\r\n        assertEquals(\"Total price is 0\", 0, userCart.getTotalPrice(), 0);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- c4-samples/src/test/java/aut/utcluj/isp/ex4/UserCartTest.java	(revision f4f62ab35c1fdbdea82ed3b66d8fe2fba950ac41)
++++ c4-samples/src/test/java/aut/utcluj/isp/ex4/UserCartTest.java	(date 1589981353796)
+@@ -28,7 +28,7 @@
+     }
+ 
+     @Test
+-    public void testRemoveProductFromCart() throws ProductNotFoundException{
++    public void testRemoveProductFromCart(){
+         final Product firstProduct = new Product("p_1", 100d);
+         final Product secondProduct = new Product("p_2", 200d);
+         final UserCart userCart = new UserCart();
+@@ -47,7 +47,7 @@
+     }
+ 
+     @Test(expected = ProductNotFoundException.class)
+-    public void testRemoveProductFromCartThrowsExceptionWhenNoProductFound() throws ProductNotFoundException{
++    public void testRemoveProductFromCartThrowsExceptionWhenNoProductFound(){
+         final UserCart userCart = new UserCart();
+         userCart.removeProductFromCart("p_1");
+     }
+Index: c4-samples/src/main/java/aut/utcluj/isp/ex4/UserCart.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package aut.utcluj.isp.ex4;\r\n\r\nimport java.util.ArrayList;\r\n\r\nimport java.util.List;\r\n\r\n\r\n/**\r\n * @author stefan\r\n */\r\npublic class UserCart {\r\n    private List<Product> cardProducts = new ArrayList<>();\r\n    private double totalPrice;\r\n\r\n    public double getTotalPrice() {\r\n        return totalPrice;\r\n    }\r\n\r\n    public List<Product> getCardProducts() {\r\n        return cardProducts;\r\n    }\r\n\r\n    /*public UserCart() {\r\n    }*/\r\n\r\n    /**\r\n     * Add new product to user cart\r\n     *\r\n     * @param product  - product to be added\r\n     * @param quantity - number of products of the same type to be added\r\n     */\r\n    public void addProductToCart(final Product product, int quantity) {\r\n        for (int i = 0; i < quantity; i++) {\r\n            cardProducts.add(product);\r\n            totalPrice = totalPrice + product.getPrice();\r\n        }\r\n      // totalPrice = totalPrice + product.getPrice() * quantity;\r\n    }\r\n\r\n    /**\r\n     * Remove one product with product id from cart\r\n     * If the product with desired id not found in the card, an {@link ProductNotFoundException} exception will be thrown\r\n     *\r\n     * @param productId - unique product id\r\n     */\r\n    public void removeProductFromCart(final String productId) throws ProductNotFoundException {\r\n        int index = 0;\r\n\r\n        for (Product product : cardProducts) {\r\n            if (product.getProductId().equals(productId)) {\r\n                index = cardProducts.indexOf(product);\r\n                cardProducts.remove(index);\r\n            }\r\n        }\r\n        if(index == 0){\r\n            throw new ProductNotFoundException();\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Reset user cart\r\n     * Reset products and total price to default values\r\n     */\r\n    public void resetCart() {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- c4-samples/src/main/java/aut/utcluj/isp/ex4/UserCart.java	(revision f4f62ab35c1fdbdea82ed3b66d8fe2fba950ac41)
++++ c4-samples/src/main/java/aut/utcluj/isp/ex4/UserCart.java	(date 1589981905986)
+@@ -1,16 +1,15 @@
+ package aut.utcluj.isp.ex4;
+ 
+-import java.util.ArrayList;
+-
+-import java.util.List;
++import java.util.*;
+ 
+ 
+ /**
+  * @author stefan
+  */
+-public class UserCart {
+-    private List<Product> cardProducts = new ArrayList<>();
++public class UserCart implements ICartDetails {
++    private List<Product> cardProducts;
+     private double totalPrice;
++    Map<Product, Integer> map = new HashMap<>();
+ 
+     public double getTotalPrice() {
+         return totalPrice;
+@@ -20,8 +19,10 @@
+         return cardProducts;
+     }
+ 
+-    /*public UserCart() {
+-    }*/
++    public UserCart() {
++        this.cardProducts = new ArrayList<>();
++        this.totalPrice = 0;
++    }
+ 
+     /**
+      * Add new product to user cart
+@@ -34,7 +35,7 @@
+             cardProducts.add(product);
+             totalPrice = totalPrice + product.getPrice();
+         }
+-      // totalPrice = totalPrice + product.getPrice() * quantity;
++        // totalPrice = totalPrice + product.getPrice() * quantity;
+     }
+ 
+     /**
+@@ -43,20 +44,32 @@
+      *
+      * @param productId - unique product id
+      */
+-    public void removeProductFromCart(final String productId) throws ProductNotFoundException {
+-        int index = 0;
++
++    public void removeProductFromCart(final String productId) {
++        try{
++            removePeBune(productId);
++        } catch (ProductNotFoundException p){
++            p.printStackTrace();
++        }
++    }
+ 
++    public void removePeBune(final String productId) throws ProductNotFoundException {
++
++        boolean found = false;
++        int index = -1;
+         for (Product product : cardProducts) {
+             if (product.getProductId().equals(productId)) {
+-                index = cardProducts.indexOf(product);
+-                cardProducts.remove(index);
++                cardProducts.remove(product);
++                totalPrice = totalPrice - product.getPrice();
++                found = true;
+             }
+         }
+-        if(index == 0){
++        if (!found) {
+             throw new ProductNotFoundException();
+         }
+     }
+ 
++
+     /**
+      * Reset user cart
+      * Reset products and total price to default values
+@@ -64,4 +77,34 @@
+     public void resetCart() {
+ 
+     }
++
++    @Override
++    public String getCartDetails() {
++        Set<Product> set = new HashSet<>(cardProducts);
++
++        for (Product product : set) {
++            return product.getProductId() + " " + Collections.frequency(cardProducts, product) + "\n" +
++                    totalPrice;
++        }
++        return null;
++    }
++
++    /*@Override
++    public String getCartDetails() {
++
++        for (Product product : cardProducts) {
++            Integer count = map.get(product);
++            if (count == null)
++                count = 0;
++            map.put(product, count + 1);
++        }
++
++        for (Map.Entry<Product, Integer> entry : map.entrySet()) {
++            return "Product id: " + entry.getKey().getProductId() + ", " + "Items: " + entry.getValue() + "\n" +
++                    "Total price :" + totalPrice;
++        }
++        return null;
++    }*/
+ }
++
++

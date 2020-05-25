@@ -6,6 +6,7 @@ import java.util.*;
  * @author stefan
  */
 public class StockController {
+
     private Map<String, List<Product>> catalogue;
 
     public StockController() {

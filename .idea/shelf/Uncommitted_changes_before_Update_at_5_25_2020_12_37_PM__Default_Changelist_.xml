@@ -1,0 +1,24 @@
+<changelist name="Uncommitted_changes_before_Update_at_5_25_2020_12_37_PM_[Default_Changelist]" date="1590399445145" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_25_2020_12_37_PM_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 5/25/2020 12:37 PM [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="c4-samples/target/classes/aut/utcluj/isp/ex4/User.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="c4-samples/target/test-classes/META-INF/Lab-11-12.kotlin_module" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="c4-samples/target/classes/aut/utcluj/isp/ex3/StockController.class" />
+    <option name="AFTER_PATH" value="c4-samples/target/classes/aut/utcluj/isp/ex3/StockController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_25_2020_12_37_PM_[Default_Changelist]/StockController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="c4-samples/target/classes/aut/utcluj/isp/ex4/Main.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>

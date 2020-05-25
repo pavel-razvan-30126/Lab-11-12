@@ -47,7 +47,7 @@ public class UserCartTest {
     }
 
     @Test(expected = ProductNotFoundException.class)
-    public void testRemoveProductFromCartThrowsExceptionWhenNoProductFound(){
+    public void testRemoveProductFromCartThrowsExceptionWhenNoProductFound() throws ProductNotFoundException{
         final UserCart userCart = new UserCart();
         userCart.removeProductFromCart("p_1");
     }

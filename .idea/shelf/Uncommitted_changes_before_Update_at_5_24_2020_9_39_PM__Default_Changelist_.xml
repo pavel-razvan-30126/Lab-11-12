@@ -1,0 +1,39 @@
+<changelist name="Uncommitted_changes_before_Update_at_5_24_2020_9_39_PM_[Default_Changelist]" date="1590345565856" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_24_2020_9_39_PM_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 5/24/2020 9:39 PM [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="c4-samples/target/classes/aut/utcluj/isp/ex4/User.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="c4-samples/target/classes/aut/utcluj/isp/ex4/ProductNotFoundException.class" />
+    <option name="AFTER_PATH" value="c4-samples/target/classes/aut/utcluj/isp/ex4/ProductNotFoundException.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_24_2020_9_39_PM_[Default_Changelist]/ProductNotFoundException.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="c4-samples/target/classes/aut/utcluj/isp/ex4/UserCart.class" />
+    <option name="AFTER_PATH" value="c4-samples/target/classes/aut/utcluj/isp/ex4/UserCart.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_24_2020_9_39_PM_[Default_Changelist]/UserCart.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="c4-samples/target/test-classes/META-INF/Lab-11-12.kotlin_module" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="c4-samples/target/classes/aut/utcluj/isp/ex3/StockController.class" />
+    <option name="AFTER_PATH" value="c4-samples/target/classes/aut/utcluj/isp/ex3/StockController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_24_2020_9_39_PM_[Default_Changelist]/StockController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="c4-samples/target/classes/aut/utcluj/isp/ex4/Main.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="c4-samples/target/test-classes/aut/utcluj/isp/ex4/UserCartTest.class" />
+    <option name="AFTER_PATH" value="c4-samples/target/test-classes/aut/utcluj/isp/ex4/UserCartTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_24_2020_9_39_PM_[Default_Changelist]/UserCartTest.class" />
+  </binary>
+</changelist>
